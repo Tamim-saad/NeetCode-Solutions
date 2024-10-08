@@ -45,10 +45,10 @@ public:
       time++;
       return;
     }
-    mpValue[key] = value;
-    mpTime[key] = time;
     ms.erase(ms.lower_bound({mpTime[key], key}));
     ms.insert({time, key});
+    mpValue[key] = value;
+    mpTime[key] = time;
     time++;
   }
 };
