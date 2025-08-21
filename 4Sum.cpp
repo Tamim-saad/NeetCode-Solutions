@@ -31,7 +31,7 @@ public:
             st.insert(quad);
             l++;
             r--;
-          } else if (a + b + nums[l] + nums[r] > target) {
+          } else if ((ll)a + (ll)b + (ll)nums[l] + (ll)nums[r] == (ll)target) {
             r--;
           } else {
             l++;
