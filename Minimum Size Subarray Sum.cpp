@@ -1,32 +1,35 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define ll long long
 
 class Solution {
 public:
-  int minSubArrayLen(int target, vector<int> &nums) {
-    int i, j, n, mini = INT_MAX, curr;
-    n = nums.size();
+  vector<int> findClosestElements(vector<int> &arr, int k, int x) {
 
-    curr = i = j = 0;
+    int i, j, n, curr, idx;
+    n = arr.size();
 
-    while (i < n) {
-      curr += nums[i];
+    i = 0;
+    j = n - 1;
 
-      while (curr >= target) {
-        mini = min(mini, i - j + 1);
-        curr -= nums[j++];
+    while (j - i + 1 > k) {
+      if (abs(arr[i] - x) > abs(arr[j] - x)) {
+        i++;
+      } else {
+        j--;
       }
-      i++;
     }
 
-    return (mini == INT_MAX) ? 0 : mini;
+    vector<int> ans;
+    for (i = i; i <= j; i++)
+      ans.emplace_back(arr[i]);
+
+    return ans;
   }
 };
 
 int main() {
-  int n, k;
-  cin >> n >> k;
+  int n, k, target;
+  cin >> n >> k >> target;
 
   int x;
   vector<int> v; // Resize the vector before accessing it
@@ -49,14 +52,14 @@ int main() {
   // cout << s << endl;
 
   Solution sl;
-  cout << (sl.minSubArrayLen(k, v));
-  // v =
+  // cout <<
+  v = (sl.findClosestElements(v, k, target));
   // if
   //   cout << "true";
   // else
   //   cout << "false";
 
-  // for (auto x : v) {
-  //   if (x != LONG_MAX && x != LONG_MIN) cout << x << " ";
-  // }
+  for (auto x : v) {
+    cout << x << " ";
+  }
 }
