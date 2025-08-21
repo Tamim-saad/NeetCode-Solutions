@@ -3,25 +3,25 @@ using namespace std;
 
 class Solution {
 public:
-  vector<int> findClosestElements(vector<int> &arr, int k, int x) {
+  int numRescueBoats(vector<int> &people, int limit) {
 
-    int i, j, n, curr, idx;
-    n = arr.size();
+    int i, j, n, ans = 0, idx;
+    n = people.size();
+
+    sort(people.begin(),people.end());
 
     i = 0;
     j = n - 1;
 
-    while (j - i + 1 > k) {
-      if (abs(arr[i] - x) > abs(arr[j] - x)) {
+    while (j >= i) {
+      if (i==j || people[i] + people[j] <= limit) {
         i++;
+        j--;
       } else {
         j--;
       }
+      ans++;
     }
-
-    vector<int> ans;
-    for (i = i; i <= j; i++)
-      ans.emplace_back(arr[i]);
 
     return ans;
   }
@@ -29,7 +29,7 @@ public:
 
 int main() {
   int n, k, target;
-  cin >> n >> k >> target;
+  cin >> n >> k;
 
   int x;
   vector<int> v; // Resize the vector before accessing it
@@ -52,14 +52,13 @@ int main() {
   // cout << s << endl;
 
   Solution sl;
-  // cout <<
-  v = (sl.findClosestElements(v, k, target));
+  cout << (sl.numRescueBoats(v, k));
   // if
   //   cout << "true";
   // else
   //   cout << "false";
 
-  for (auto x : v) {
-    cout << x << " ";
-  }
+  // for (auto x : v) {
+  //   cout << x << " ";
+  // }
 }
